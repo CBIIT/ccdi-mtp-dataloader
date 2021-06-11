@@ -1,3 +1,3 @@
-export PREFIX="path to data file"
+export PREFIX="path to file"
 export ES=localhost:9200
-export INDEX_SETTINGS="path to / index_settings.json"
+export INDEX_SETTINGS="path to index_settings.json"
