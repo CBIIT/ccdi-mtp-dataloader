@@ -34,6 +34,14 @@ wget -r ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/so/
 
 wget -r ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/etl/json/
 ```
+2. Download PPDC ETL data files
+
+```text
+git clone https://github.com/CBIIT/ppdc-data-pipeline.git
+cd ppdc-data-pipeline
+git checkout dev
+```
+data located in data/outputs
 
 3. Create OT table **associations\_otf\_log**
 4. Import data
