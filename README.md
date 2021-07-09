@@ -44,12 +44,38 @@ git checkout dev
 data located in data/outputs
 
 3. Create OT table **associations\_otf\_log**
+
+```text
+clickhouse-client --multiline --multiquery < aotf_log.sql
+```
+
 4. Import data
+
+```text
+cat part-00* | ./clickhouse-client -h localhost --query="insert into ot.associations_otf_log format JSONEachRow "
+``` 
+
 5. Create OT table **associations\_otf\_disease** and **associations\_otf\_target**
 
-   Note -- associations\_otf\_disease and  associations\_otf\_target _read data from_ 
+```text
+clickhouse-client --multiline --multiquery < aotf.sql
+``` 
 
-   associations\_otf\_log
+Note -- associations\_otf\_disease and  associations\_otf\_target _read data from associations\_otf\_log
+
+6. To load word2vec vectors from model
+
+```text
+clickhouse-client --multiline --multiquery < w2v_log.sql
+gsutil -m cat gs://open-targets-data-releases/21.04/output/literature/vectors/part\* | clickhouse-client -h localhost --query="insert into ot.ml_w2v_log format JSONEachRow "
+clickhouse-client --multiline --multiquery < w2v.sql
+```
+7.  To load literature
+```text
+clickhouse-client --multiline --multiquery < literature_log.sql
+gsutil -m cat gs://open-targets-data-releases/21.04/output/literature/literatureIndex/part\* | clickhouse-client -h localhost --query="insert into ot.literature_log format JSONEachRow "
+clickhouse-client --multiline --multiquery < literature.sql
+```
 
 ####  Clickhouse data validation
 
