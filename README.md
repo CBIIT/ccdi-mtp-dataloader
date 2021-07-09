@@ -25,10 +25,19 @@ Pip3 install elasticsearch_loader
 
 #### Import data to clickhouse
 
-1. Download data from S3 or FTP
-2. Create OT table **associations\_otf\_log**
-3. Import data
-4. Create OT table **associations\_otf\_disease** and **associations\_otf\_target**
+1. Download data from S3 or FTP, takes 3 hours. 
+
+```text
+wget -r ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/literature/
+
+wget -r ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/so/
+
+wget -r ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/etl/json/
+```
+
+3. Create OT table **associations\_otf\_log**
+4. Import data
+5. Create OT table **associations\_otf\_disease** and **associations\_otf\_target**
 
    Note -- associations\_otf\_disease and  associations\_otf\_target _read data from_ 
 
