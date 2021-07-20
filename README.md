@@ -15,10 +15,10 @@ This repository contains scripts for data loading, the scripts are fork from  [p
 
 Recommend ES version 7.9.0
 
-Python 3.7  and module elasticsearch\_loader
+Python 3.7 or 2.7  and module elasticsearch\_loader
 
 ```text
-Pip3 install elasticsearch_loader
+pip install elasticsearch_loader
 ```
 
 ### Data loader
@@ -107,9 +107,9 @@ select count(*) from ot.associations_otf_disease
 2. Update env.sh settings
 
 ```text
-export PREFIX="path to data file"
+export PREFIX="/home/bento/21.06"
 export ES=localhost:9200
-export INDEX_SETTINGS="path to index_settings.json"
+export INDEX_SETTINGS="/home/bento/ppdc-dataloader/elasticsearch/index_settings.json"
 ```
 
    3. run ./load\_all.sh
