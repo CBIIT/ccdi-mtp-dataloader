@@ -132,10 +132,52 @@ Use the code to get the list of indices details
 curl http://localhost:9200/_cat/indices
 ```
 
-```text
-TBD
-```
 
+```text
+green open mouse_phenotypes                       HGrgV5DzT9iw6D4yvBwGyw 5 0    60605    0  40.5mb  40.5mb
+green open cancerbiomarker                        HSFbVDC7TYG2lVqqIz0SrQ 5 0     1613    0     1mb     1mb
+green open search_drug                            uutGZ4sDTrawNpTDz8yrQQ 5 0    13185    0 136.9mb 136.9mb
+green open evidence_datasource_phewas_catalog     b7PkTazUQn-e6HwdtsHUSA 5 0   183064    0  96.2mb  96.2mb
+green open evidences_aotf                         nZVI9TbgRRezaBCYbjxWBQ 5 0 72921523    0   5.3gb   5.3gb
+green open evidence_datasource_intogen            v0oJ0sSQS6eYKyHnbV1k1w 5 0     3141    0     2mb     2mb
+green open drug                                   Uo-s3DyHSIK0s4IX_mtG1A 5 0    13185    0  11.9mb  11.9mb
+green open eco                                    usa_0HM4Qs2cr4l3aPJfZA 5 0     4098    0     5mb     5mb
+green open evidence_datasource_eva                VD2OfbVLTvGBaq0vbK0RiQ 5 0   855569    0 582.8mb 582.8mb
+green open evidence_datasource_chembl             gV3F4_rmTKG5SaOy1zlehg 5 0   529149    0   233mb   233mb
+green open evidence_datasource_uniprot_literature RfpITL-oRju6DBrzH9YCPg 5 0     5322    0   3.7mb   3.7mb
+green open evidence_datasource_sysbio             48q9kIQCQe2Fq5Yo-EGi1A 5 0      389    0 725.2kb 725.2kb
+green open evidence_datasource_eva_somatic        ObiBpbEQQIKZVPkSbW3xBw 5 0    11589    0   8.3mb   8.3mb
+green open mechanism_of_action                    GD25HBykRXSqy4uE118QZw 5 0     5013    0     4mb     4mb
+green open evidence_datasource_clingen            -noxd_M3TK62Z1q6SXIKfA 5 0     1309    0   1.2mb   1.2mb
+green open interaction_evidence                   hDbB9LpGSYef6PQYUpo_LQ 5 0 22525292    0     3gb     3gb
+green open disease_hpo                            bMDR8MGeSO2Ly5DnaOc5dQ 5 0   165688    0  61.2mb  61.2mb
+green open evidence_datasource_cancer_gene_census 1zo3p_dhRpite5VT9Z8PvA 5 0    63311    0  28.1mb  28.1mb
+green open so                                     erXGqFN_QsGQ4Ew_J581AA 5 0     2423    0   1.7mb   1.7mb
+green open evidence_datasource_expression_atlas   5LMpAa2DQkClsHwXMgal5g 5 0   225933    0 126.3mb 126.3mb
+green open evidence_datasource_europepmc          hx2EksH9TI6fL_J3I11VOg 5 0  9916059    0  12.2gb  12.2gb
+green open reactome                               KfJgkr0dRl6TQieNL4miLQ 5 0     2536    0   1.5mb   1.5mb
+green open expression                             Zjt4dgZYS0i38yjznUWVrQ 5 0    43782    0 370.3mb 370.3mb
+green open disease                                DYz4GZwLQNKa5p0mMEK-kg 5 0    18507    0  33.8mb  33.8mb
+green open evidence_datasource_crispr             vPt8ij1cSgC6wGcfDyAVpw 5 0     1846    0   1.7mb   1.7mb
+green open evidence_datasource_orphanet           VjyA0VLUQo63mFsKn96n2w 5 0     5736    0   3.8mb   3.8mb
+green open search_target                          Ecq7osZ6SSe5irz171borQ 5 0    60606    0   2.1gb   2.1gb
+green open hpo                                    _u8jNWiJSkeElMC30caR0g 5 0    25709    0  13.2mb  13.2mb
+green open evidence_datasource_ot_genetics_portal ua8wWR04Q-ipw9_NcSvwig 5 0   608262    0 385.5mb 385.5mb
+green open drug_warnings                          Spt2HlI4SpSoSn89FrXi_Q 5 0     1256    0 937.3kb 937.3kb
+green open evidence_datasource_gene2phenotype     3QXPgH3xR8S1nqdz4rtBjQ 5 0     2506    0   1.7mb   1.7mb
+green open known_drugs                            MQ9F4b7uS7iUoOLJh1Fs3w 5 0   227963    0   5.3gb   5.3gb
+green open evidence_datasource_progeny            D6_aaCu6SiqpbEEFNIjWWA 5 0      378    0 559.7kb 559.7kb
+green open evidence_datasource_slapenrich         9DTXvuEDReGngrST-H_myA 5 0    72369    0  30.8mb  30.8mb
+green open target                                 VGJ0JDPYQQek5iNk2vWnmg 5 0    60608 3965  69.5mb  69.5mb
+green open evidence_datasource_reactome           ld_O4S_RTK2RV4pMsjGEqQ 5 0     9673    0     8mb     8mb
+green open evidence_datasource_genomics_england   InsIcPGMRcuTyMCZdCq-rQ 5 0    19322    0  18.4mb  18.4mb
+green open evidence_datasource_uniprot_variants   dtbOpPPESb6EpsSZeFx7QA 5 0    34001    0  18.7mb  18.7mb
+green open search_disease                         S9aifCbyRIeRcynq-iakvg 5 0    18507    0   1.1gb   1.1gb
+green open interaction                            R6gQjD14S6-5mz9H9Y8w0A 5 0 12152852    0   1.2gb   1.2gb
+green open evidence_datasource_phenodigm          pkaHnpJMQ8C9Q3R8yFi5CA 5 0   718250    0 838.6mb 838.6mb
+green open indication                             FDLQHnbhSzCAVqj5mcN14Q 5 0     7672    0  11.9mb  11.9mb
+
+```
 
 
 
