@@ -279,11 +279,42 @@ cat /home/bento/21.06/literature/literatureIndex/part-00198-5956251d-6136-4333-9
 cat /home/bento/21.06/literature/literatureIndex/part-00199-5956251d-6136-4333-959d-72607d37135f-c000.json  | clickhouse client -h localhost --query="insert into ot.literature_log format JSONEachRow " 
 ```
 
+Connect to clickhouse and create table through the script below. 
 
+connect to clickhouse
 ```text
-clickhouse client --multiline --multiquery < literature.sql
+clickhouse client 
 ```
 
+create table literature_index
+```text
+create table if not exists ot.literature_index \
+    engine = MergeTree() \
+        order by (keywordId, intHash64(pmid), year, month, day) \
+    as ( \
+        select pmid, pmcid, keywordId, relevance, date, year, month, day \
+        from ot.literature_log \
+        ); \
+```
+
+create table literature
+```text
+create table if not exists ot.literature
+    engine = MergeTree()
+        order by (intHash64(pmid))
+as (
+    select pmid,
+           any(pmcid) as pmcid,
+           any(date) as date,
+           any(year) as year,
+           any(month) as month,
+           any(day) as day,
+           any(sentences) as sentences
+    from ot.literature_log
+    group by pmid
+);
+
+```
 ####  Clickhouse data validation
 
  Check number of records in the tables
