@@ -72,7 +72,7 @@ clickhouse client --multiline --multiquery < w2v_log.sql
 cat /home/bento/21.06//literature/vectors/part* | clickhouse-client -h localhost --query="insert into ot.ml_w2v_log format JSONEachRow "
 clickhouse client --multiline --multiquery < w2v.sql
 ```
-7.  To load literature
+7.  To load literature (40 minutes)
 ```text
 clickhouse client --multiline --multiquery < literature_log.sql
 ```
