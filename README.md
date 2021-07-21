@@ -299,20 +299,20 @@ create table if not exists ot.literature_index \
 
 create table literature
 ```text
-create table if not exists ot.literature
-    engine = MergeTree()
-        order by (intHash64(pmid))
-as (
-    select pmid,
-           any(pmcid) as pmcid,
-           any(date) as date,
-           any(year) as year,
-           any(month) as month,
-           any(day) as day,
-           any(sentences) as sentences
-    from ot.literature_log
-    group by pmid
-);
+create table if not exists ot.literature\
+    engine = MergeTree()\
+        order by (intHash64(pmid))\
+as (\
+    select pmid,\
+           any(pmcid) as pmcid,\
+           any(date) as date,\
+           any(year) as year,\
+           any(month) as month,\
+           any(day) as day,\
+           any(sentences) as sentences\
+    from ot.literature_log\
+    group by pmid\
+);\
 
 ```
 ####  Clickhouse data validation
