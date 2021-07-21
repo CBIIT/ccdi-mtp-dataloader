@@ -23,9 +23,9 @@ pip install elasticsearch_loader
 
 ### Data loader
 
-#### Import data to clickhouse
+#### Import data to clickhouse 
 
-1. Download data from S3 or FTP, takes 3 hours. 
+1. Download data from S3 or FTP, takes 8 hours. 
 
 ```text
 wget -nc -r ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/literature/json/literatureIndex
@@ -48,19 +48,19 @@ data located in data/outputs
 3. Create OT table **associations\_otf\_log**
 
 ```text
-clickhouse-client --multiline --multiquery < aotf_log.sql
+clickhouse client --multiline --multiquery < aotf_log.sql
 ```
 
-4. Import data
+4. Import data (10 minutes)
 
 ```text
-cat part-00* | ./clickhouse-client -h localhost --query="insert into ot.associations_otf_log format JSONEachRow "
+cat /home/bento/21.06/AOTFClickhouse/part-00* | clickhouse client -h localhost --query="insert into ot.associations_otf_log format JSONEachRow "
 ``` 
 
-5. Create OT table **associations\_otf\_disease** and **associations\_otf\_target**
+5. Create OT table **associations\_otf\_disease** and **associations\_otf\_target**  (6 minutes)
 
 ```text
-clickhouse-client --multiline --multiquery < aotf.sql
+clickhouse client --multiline --multiquery < aotf.sql
 ``` 
 
 Note -- associations\_otf\_disease and  associations\_otf\_target _read data from associations\_otf\_log
@@ -68,22 +68,30 @@ Note -- associations\_otf\_disease and  associations\_otf\_target _read data fro
 6. To load word2vec vectors from model
 
 ```text
-clickhouse-client --multiline --multiquery < w2v_log.sql
-gsutil -m cat gs://open-targets-data-releases/21.04/output/literature/vectors/part\* | clickhouse-client -h localhost --query="insert into ot.ml_w2v_log format JSONEachRow "
-clickhouse-client --multiline --multiquery < w2v.sql
+clickhouse client --multiline --multiquery < w2v_log.sql
+cat /home/bento/21.06//literature/vectors/part* | clickhouse-client -h localhost --query="insert into ot.ml_w2v_log format JSONEachRow "
+clickhouse client --multiline --multiquery < w2v.sql
 ```
 7.  To load literature
 ```text
-clickhouse-client --multiline --multiquery < literature_log.sql
-gsutil -m cat gs://open-targets-data-releases/21.04/output/literature/literatureIndex/part\* | clickhouse-client -h localhost --query="insert into ot.literature_log format JSONEachRow "
-clickhouse-client --multiline --multiquery < literature.sql
+clickhouse client --multiline --multiquery < literature_log.sql
+```
+
+```text
+cat /home/bento/21.06/literature/literatureIndex/part* | clickhouse client -h localhost --query="insert into ot.literature_log format JSONEachRow "
+
+```
+
+
+```text
+clickhouse client --multiline --multiquery < literature.sql
 ```
 
 ####  Clickhouse data validation
 
  Check number of records in the tables
 
-**ot.associations\_otf log** :    27297042 records
+**ot.associations\_otf log** :    v1-27297042 -> v2-13267378 records
 
 ```text
 select count(*) from ot.associations_otf_log
