@@ -1,9 +1,9 @@
 
-## PPDC-dataloader
+# PPDC-dataloader
 
 This repository contains scripts for data loading, the scripts are fork from  [platform-etl-backend](https://github.com/opentargets/platform-etl-backend) and modified by the PPDC Dev team. 
 
-### Folder Structure
+## Folder Structure
 
 ```text
 -- clickhosue   # script to create database in clickhouse 
@@ -11,7 +11,7 @@ This repository contains scripts for data loading, the scripts are fork from  [p
 
 ```
 
-### Env requirement
+## Env requirement
 
 Recommend ES version 7.9.0
 
@@ -21,9 +21,7 @@ Python 3.7 or 2.7  and module elasticsearch\_loader
 pip install elasticsearch_loader
 ```
 
-### Data loader
-
-#### Import data to clickhouse 
+## Load Data 
 
 1. Download data from S3 or FTP, takes 8 hours. 
 
@@ -36,46 +34,71 @@ wget -nc -r ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/
 
 wget -nc -r ftp://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/etl/json/
 ```
-2. Download PPDC ETL data files
+
+2. Download PPDC ETL data files * 
 
 ```text
 git clone https://github.com/CBIIT/ppdc-data-pipeline.git
 cd ppdc-data-pipeline
 git checkout dev
 ```
-data located in data/outputs
+ data located in data/outputs
 
-3. Create OT table **associations\_otf\_log**
+
+
+
+## Import data to clickhouse 
+
+### To load associations (16 minutes) 
+
+Create OT table **associations\_otf\_log**
 
 ```text
 clickhouse client --multiline --multiquery < aotf_log.sql
 ```
 
-4. Import data (10 minutes)
+Import data (10 minutes)
 
 ```text
 cat /home/bento/21.06/AOTFClickhouse/part-00* | clickhouse client -h localhost --query="insert into ot.associations_otf_log format JSONEachRow "
 ``` 
 
-5. Create OT table **associations\_otf\_disease** and **associations\_otf\_target**  (6 minutes)
+Create OT table **associations\_otf\_disease** and **associations\_otf\_target**  (6 minutes)
 
 ```text
 clickhouse client --multiline --multiquery < aotf.sql
 ``` 
-
 Note -- associations\_otf\_disease and  associations\_otf\_target _read data from associations\_otf\_log
 
-6. To load word2vec vectors from model
 
+
+### To load word2vec vectors from model (in seconds)
+
+Create OT table ml\_w2v\_log 
 ```text
 clickhouse client --multiline --multiquery < w2v_log.sql
+```
+
+Import data 
+```text
 cat /home/bento/21.06//literature/vectors/part* | clickhouse-client -h localhost --query="insert into ot.ml_w2v_log format JSONEachRow "
+```
+
+
+Create OT table ml\_w2v
+```text
 clickhouse client --multiline --multiquery < w2v.sql
 ```
-7.  To load literature (40 minutes)
+
+### To load literature (60 minutes)
+
+
+Create OT table literature\_log 
+
 ```text
 clickhouse client --multiline --multiquery < literature_log.sql
 ```
+Import data   (40 minutes)
 
 ```text
 cat /home/bento/21.06/literature/literatureIndex/part-00000-5956251d-6136-4333-959d-72607d37135f-c000.json  | clickhouse client -h localhost --query="insert into ot.literature_log format JSONEachRow " 
@@ -279,6 +302,8 @@ cat /home/bento/21.06/literature/literatureIndex/part-00198-5956251d-6136-4333-9
 cat /home/bento/21.06/literature/literatureIndex/part-00199-5956251d-6136-4333-959d-72607d37135f-c000.json  | clickhouse client -h localhost --query="insert into ot.literature_log format JSONEachRow " 
 ```
 
+create tables
+
 Connect to clickhouse and create table through the script below. 
 
 connect to clickhouse
@@ -315,29 +340,65 @@ as (\
 );\
 
 ```
-####  Clickhouse data validation
+##  Clickhouse data validation
 
- Check number of records in the tables
-
-**ot.associations\_otf log** :    v1-27297042 -> v2-13267378 records
-
+Check number of records in the each table
+ 
+#### ot.associations_otf_disease 
 ```text
-select count(*) from ot.associations_otf_log
+select count(*) from ot.associations_otf_disease 
+
+13267378 rows
 ```
 
-ot.**associations\_otf target:** 13648521 records
-
+#### ot.associations_otf_log
 ```text
-select count(*) from ot.associations_otf_target
+select count(*) from ot.associations_otf_log  
+
+13267378 rows
+```
+#### ot.associations_otf_target 
+```text
+select count(*) from ot.associations_otf_target 
+
+13267378 rows
+```
+##### ot.literature
+```text
+select count(*) from ot.literature   
+
+16146798 rows
 ```
 
-ot.**associations\_otf disease:** 13648521records
-
+#### ot.literature_index  
 ```text
-select count(*) from ot.associations_otf_disease
+select count(*) from ot.literature_index  
+
+83552235 rows
+```
+#### ot.literature_log  
+```text
+select count(*) from ot.literature_log  
+
+83552235 rows
 ```
 
-#### Import data to ES
+#### ot.ml_w2v   
+```text
+select count(*) from ot.ml_w2v   
+
+46185 rows
+```
+
+#### ot.ml_w2v_log 
+```text
+select count(*) from ot.ml_w2v_log 
+
+46185 rows
+```
+
+
+## Import data to ES
 
 1. Download data from S3 or FTP
 2. Update env.sh settings
@@ -350,7 +411,7 @@ export INDEX_SETTINGS="/home/bento/ppdc-dataloader/elasticsearch/index_settings.
 
    3. run ./load\_all.sh
 
-#### ES data validatiaon 
+## ES data validatiaon 
 
 Check the number of indices and the number of docs under each index.
 
