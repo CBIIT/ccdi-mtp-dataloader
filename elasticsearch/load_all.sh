@@ -7,9 +7,8 @@
 # # default ES endpoint
 # export ES=${ETL_ES:-"http://localhost:9200"}
 
-./env.sh
 
-./load_chop_nav_data.sh
+
 ./load_diseases.sh
 ./load_disease_hpo.sh
 ./load_hpo.sh
@@ -27,6 +26,7 @@
 ./load_interaction.sh
 ./load_interaction_evidence.sh
 echo "INDEX_SETTINGS different"
+./load_chop_nav_data.sh
 ./load_search.sh
 ./load_known_drugs.sh
 ./load_targets.sh
