@@ -9,3 +9,10 @@ export ES=localhost:9200
 # export INDEX_SETTINGS="path to index_settings.json"
 export INDEX_SETTINGS="/home/bento/ppdc-dataloader/elasticsearch/index_settings.json"
 
+
+
+echo ES = $ES
+
+echo INDEX_SETTINGS = $INDEX_SETTINGS
+
+echo PREFIX= $PREFIX
