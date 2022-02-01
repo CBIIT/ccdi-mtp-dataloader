@@ -7,7 +7,7 @@ export PREFIX="/home/bento/mtp-data-files/mtp-data-files/OT_21.06"
 export ES=localhost:9200
 
 # export INDEX_SETTINGS="path to index_settings.json"
-export INDEX_SETTINGS="/home/bento/ppdc-dataloader/elasticsearch/index_settings.json"
+export INDEX_SETTINGS="index_settings.json"
 
 
 

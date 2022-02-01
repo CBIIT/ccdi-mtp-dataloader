@@ -2,6 +2,7 @@
 
 export INDEX_SETTINGS="index_settings_search.json"
 
+
 export INDEX_NAME="search_target"
 export INPUT="${PREFIX}/searchTarget"
 ./load_jsons.sh
