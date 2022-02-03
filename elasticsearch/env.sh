@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # export PREFIX="path to file"
-export PREFIX="/home/bento/mtp-data-files/mtp-data-files/OT_21.06"
+export PREFIX=""
 
 # export ES=localhost:9200
 export ES=localhost:9200

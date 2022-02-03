@@ -6,8 +6,24 @@
 # export INDEX_SETTINGS=${ETL_INDEX_SETTINGS:-"index_settings.json"}
 # # default ES endpoint
 # export ES=${ETL_ES:-"http://localhost:9200"}
+#!/bin/bash
+
+# export PREFIX="path to file"
+export PREFIX=""
+
+# export ES=localhost:9200
+export ES=localhost:9200
+
+# export INDEX_SETTINGS="path to index_settings.json"
+export INDEX_SETTINGS="index_settings.json"
 
 
+
+echo ES = $ES
+
+echo INDEX_SETTINGS = $INDEX_SETTINGS
+
+echo PREFIX= $PREFIX
 
 ./load_diseases.sh
 ./load_disease_hpo.sh
@@ -26,7 +42,8 @@
 ./load_interaction.sh
 ./load_interaction_evidence.sh
 echo "INDEX_SETTINGS different"
-./load_chop_nav_data.sh
 ./load_search.sh
 ./load_known_drugs.sh
 ./load_targets.sh
+echo "INDEX_SETTINGS different"
+./load_chop_nav_data.sh
