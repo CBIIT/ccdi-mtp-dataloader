@@ -1,28 +1,16 @@
 {
   "mappings": {
     "properties": {
-      "multiplier": {
-        "type": "float"
-      },
-      "text": {
-        "type": "text",
-        "analyzer": "autocomplete", 
-        "search_analyzer": "standard" 
-      }
-    }
-    },
-    "dynamic_templates": [
-      {
-        "strings": {
-          "match_mapping_type": "string",
-          "mapping": {
-            "type": "text",
-            "analyzer": "autocomplete", 
-            "search_analyzer": "standard" 
+      "Gene_symbol": { 
+      "type": "text",
+      "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
           }
         }
       }
-    ]
+    }
   },
   "settings": {
     "index": {
@@ -40,7 +28,13 @@
           "autocomplete_filter": {
             "type": "edge_ngram",
             "min_gram": 2,
-            "max_gram": 20
+            "max_gram": 20,
+            "token_chars": [
+              "letter",
+              "digit",
+              "punctuation",
+              "symbol"
+            ]
           },
           "word_delimiter_filter": {
             "type": "word_delimiter",
@@ -56,17 +50,24 @@
           }
         },
         "analyzer": {
-           "autocomplete": { 
+          "default": {
             "type": "custom",
-            "tokenizer": "standard",
+            "tokenizer": "whitespace",
             "filter": [
               "lowercase",
               "autocomplete_filter"
             ]
           },
+          "default_search": {
+            "type": "custom",
+            "tokenizer": "keyword",
+            "filter": [
+              "lowercase"
+            ]
+          },
           "ngram_analyzer": {
             "type": "custom",
-            "tokenizer": "standard",
+            "tokenizer": "whitespace",
             "filter": [
               "lowercase",
               "autocomplete_filter"
@@ -74,10 +75,9 @@
           },
           "token": {
             "type": "custom",
-            "tokenizer": "standard",
+            "tokenizer": "keyword",
             "filter": [
-              "lowercase",
-              "autocomplete_filter"
+              "lowercase"
             ]
           }
         }
