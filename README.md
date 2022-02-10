@@ -6,7 +6,7 @@ This repository contains scripts for data loading, the scripts are fork from  [p
 ## Folder Structure
 
 ```text
--- clickhosue   # script to create database in clickhouse 
+-- clickhosue   # script to create database in clickhouse and load datat into CH
 -- elasticsearch  # script to load data into es
 
 ```
