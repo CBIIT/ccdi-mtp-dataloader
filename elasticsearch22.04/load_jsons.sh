@@ -35,6 +35,7 @@ for f in $FILES
       $cmd $f $trail | elasticsearch_loader --with-retry --es-host $ES --bulk-size 5000 --index $INDEX --id-field $ID json --json-lines -
     else
        printf "The index wont have an ID \n"
+       printf INDEX
       $cmd "$f" $trail | elasticsearch_loader --with-retry --es-host $ES --bulk-size 5000 --index "$INDEX" json --json-lines -
     fi
 done
