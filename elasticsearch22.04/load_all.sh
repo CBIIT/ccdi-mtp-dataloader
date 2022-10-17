@@ -6,8 +6,8 @@ export PREFIX="/Users/cheny39/Documents/work/22.04/output"
 
 #export PREFIX="/Users/cheny39/Documents/dataFiles/22.04/"
 
-#export ES=localhost:9200
-export ES=https://vpc-mtp-opensearch-dev-akmgxd5o76x3at6t7conzlciam.us-east-1.es.amazonaws.com
+export ES=localhost:9200
+
 
 # export INDEX_SETTINGS="path to index_settings.json"
 export INDEX_SETTINGS="/Users/cheny39/Documents/work/OT/ppdc-dataloader/elasticsearch22.04/index_settings.json"
