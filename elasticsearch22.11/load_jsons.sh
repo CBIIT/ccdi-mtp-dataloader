@@ -31,14 +31,11 @@ for f in $FILES
   do
     echo $f
     if [[ -n "$ID" ]]; then
-      printf "The index will have %s \n" "$ID"
-      $cmd $f $trail | elasticsearch_loader --with-retry --es-host $ES --bulk-size 1000 --index $INDEX --id-field $ID json --json-lines -
+       printf "The index will have %s \n" "$ID"
+      $cmd $f $trail | elasticsearch_loader --with-retry --es-host $ES --bulk-size 5000 --index $INDEX --id-field $ID json --json-lines -
     else
        printf "The index wont have an ID \n"
-       #$cmd "$f" $trail | elasticsearch_loader --with-retry --es-host $ES --bulk-size 1000 --index-settings-file $INDEX_SETTINGS  --http-auth mtpopensearch:fLd%3sg-6GH78Ox  --index "$INDEX" json  --json-lines -
-       #$cmd $f $trail | elasticsearch_loader --with-retry --update --es-host $ES --bulk-size 10000 --index "$INDEX" json  --json-lines -
       $cmd "$f" $trail | elasticsearch_loader --with-retry --es-host $ES --bulk-size 5000 --index "$INDEX" json --json-lines -
- 
     fi
 done
 

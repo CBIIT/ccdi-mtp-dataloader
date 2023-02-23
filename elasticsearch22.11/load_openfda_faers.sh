@@ -1,6 +1,6 @@
 #!/bin/bash
 
 export INDEX_NAME="openfda_faers"
-export INPUT="${PREFIX}/significantAdverseDrugReactions"
+export INPUT="${PREFIX}/fda/significantAdverseDrugReactions"
 
 ./load_jsons.sh
