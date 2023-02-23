@@ -1,5 +1,7 @@
 #!/bin/bash
-FOLDER_PREFIX="${PREFIX}/miss_evidence"
+#cat "$1" | elasticsearch_loader --es-host "http://localhost:9200" --index-settings-file "index_settings.json" --bulk-size 5000 --index cancerbiomarker --type cancerbiomarker json --json-lines -
+
+FOLDER_PREFIX="${PREFIX}/evidence"
 FOLDERS=$(ls -1 $FOLDER_PREFIX | grep 'sourceId')
 
 for folder in $FOLDERS; do
@@ -14,3 +16,4 @@ for folder in $FOLDERS; do
   export INPUT="${full_folder}"
   ./load_jsons.sh
 done
+
