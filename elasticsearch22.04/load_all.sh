@@ -7,12 +7,8 @@
 export PREFIX="/Users/cheny39/Documents/work/22.09"
 
 
-#export ES="https://search-mtp-openseach-gdbhnjpmzs37cklj3rd4zmybwy.us-east-1.es.amazonaws.com"
-#cloudOne dev
-export ES="https://vpc-mtp-opensearch-dev-akmgxd5o76x3at6t7conzlciam.us-east-1.es.amazonaws.com"
-#export ES=localhost:9200
-#export ES=https://vpc-mtp-opensearch-dev-akmgxd5o76x3at6t7conzlciam.us-east-1.es.amazonaws.com
-#export ES=https://vpc-mtp-opensearch-qa-y4vflq7yz2zwwpwcxii6r75zza.us-east-1.es.amazonaws.com
+export ES=localhost:9200
+
 # export INDEX_SETTINGS="path to index_settings.json"
 export INDEX_SETTINGS="/Users/cheny39/Documents/work/mtp/ppdc-dataloader/elasticsearch22.04/index_settings.json"
 
